@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_paramenters, if: :device_controller?
+  before_action :configure_permitted_paramenters, if: :devise_controller?
 
   protected
 
