@@ -38,7 +38,7 @@
         <%= link_to "Home", root_path %>
       </li>
       <li>
-        <%= link_to "About", root_path %>
+        <%= link_to "About", about_path %>
       </li>
       <li>
         <%= link_to "Sign in", new_user_session_path %>
@@ -55,8 +55,12 @@
 
     <%= yield %>
 
-    <footer>
-
+    <footer class="container">
+    <div class="row">
+     <div class="mx-auto">
+       <p>CopyRight Infratop.inc</p>
+     </div>
+    </div>
     </footer>
   </body>
 </html>
