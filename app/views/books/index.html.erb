@@ -1,2 +1,19 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+
+<main class="continar">
+<div class="row">
+<diV class="col-md-1"></diV>
+
+<%= render 'info', book: @book, user: @user %>
+
+<div class="col-md-7">
+<h1>Books</h1>
+<div></div>
+<% @books.each do |book| %>
+<%= image_tag 'no_image.jpg' %>
+<%= link_to book.title, book_path(book.id) %>
+<%= book.body %>
+<% end %>
+</div>
+<div class="col-md-1"></div>
+</div>
+</main>
