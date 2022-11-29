@@ -1,36 +1,18 @@
-
 <main class="continar">
 <div class="row">
 <diV class="col-md-1"></diV>
-<div class="col-md-4">
-<div>
-  <h1>User info</h1>
-  <div><%= image_tag @user.get_profile_image %></div>
-  <div>name</div><div><%= @user.name %></div>
-  <div>introduction</div>
-</div>
 
-<%= link_to "user-edit", edit_user_path(current_user.id), class: "btn btn-secondary" %>
-
-<div>
-  <h1>New book</h1>
-  <%= form_with model: @book do |f| %>
-  <p>Title</p>
-  <%= f.text_field :title %>
-  <p>Opinion</p>
-  <%= f.text_area :body %><br>
-  <%= f.submit "CreateBook", class: "btn btn-secondary" %>
-  <% end %>
-</div>
-</div>
+<%= render 'books/info', book: @book, user: @user %>
 
 <div class="col-md-7">
 <h1>Books</h1>
+<div>Title Opinion</div>
 <% @books.each do |book| %>
-<div><%= book.title %></div>
-<div><%= book.body %></div>
+<%= image_tag 'no_image.jpg' %>
+<%= link_to book.title, book_path(book.id) %>
+<%= book.body %>
 <% end %>
 </div>
-<diV class="col-md-1"></diV>
+<div class="col-md-1"></div>
 </div>
 </main>
