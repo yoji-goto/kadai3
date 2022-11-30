@@ -5,6 +5,8 @@
   <div><%= image_tag user.get_profile_image %></div>
   <div>name</div><div><%= user.name %></div>
   <div>introduction</div>
+  <%= introduction.each do |user| %>
+  <% end %>
 </div>
 
 <%= link_to "user-edit", edit_user_path(current_user.id), class: "btn btn-secondary" %>
