@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
    def new
      super
-  　flash[:notice] = "新規登録が完了しました。"
+  　flash[:notice] = "新規登録successfully"
    end
 
   # POST /resource
@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
    def edit
      super
-  flash[:notice] = "プロフィールが編集されました。"
+  flash[:notice] = "プロフィール編集successfully"
    end
 
   # PUT /resource

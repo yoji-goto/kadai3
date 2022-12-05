@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-    @a = User.find(params[:id])
-    @books = @a.books
-    @user = current_user
+    @user = User.find(params[:id])
+    @books = @user.books
     @book = Book.new
   end
 
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
     is_matching_login_user
     @user = User.find(params[:id])
     if @user.update(user_params)
-    flash[:notice] = "プロフィール編集が完了しました。"
+    flash[:notice] = "プロフィール編集successfully"
     redirect_to user_path(@user.id)
     else
      @user = User.find(params[:id])

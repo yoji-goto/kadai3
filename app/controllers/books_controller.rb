@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
 
   def create
-  @book = Book.new(books_params)
-  @book.user_id = current_user.id
+  @book = Book.new(book_params)
+  @book.user = current_user
     if @book.save
-    flash[:notice] = "新規投稿が成功しました。"
-    redirect_to books_path
+    flash[:notice] = "新規投稿successfully"
+    redirect_to book_path(@book.id)
     else
     @book = Book.new
     @books = Book.all
@@ -16,8 +16,8 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @user = current_user
     @books = Book.all
+    @user = current_user
   end
 
   def show
@@ -28,31 +28,29 @@ class BooksController < ApplicationController
   end
 
   def edit
-    is_matching_login_user
     @book = Book.find(params[:id])
   end
 
   def update
-    is_matching_login_user
     book = Book.find(params[:id])
-    if book.update(books_params)
-    flash[:notice] = "投稿の更新が成功しました。"
-    redirect_to book_path(book.id)
+    if book.update(book_params)
+     flash[:notice] = "投稿更新successfully"
+     redirect_to book_path(book.id)
     else
-    book = Book.find(params[:id])
-    render :edit
+     book = Book.find(params[:id])
+     render :edit
     end
   end
 
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to user_path(current_user.id)
+    redirect_to books_path
   end
 
   private
 
-  def books_params
+  def book_params
     params.require(:book).permit(:title, :body)
   end
 
@@ -61,6 +59,14 @@ class BooksController < ApplicationController
     login_user_id = current_user.id
     if(user_id != login_user_id)
       redirect_to books_path
+    end
+  end
+
+  def get_image
+    if image.attached?
+      image
+    else
+      'no_image.jpg'
     end
   end
 
