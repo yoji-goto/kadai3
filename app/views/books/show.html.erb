@@ -6,14 +6,21 @@
 
 <div class="col-md-7">
 <h1>Book detail</h1>
-<div>
-<%= image_tag 'no_image.jpg' %>
-<%= link_to @show.user.name, user_path(current_user.id) %>
-</div>
-<div><%= @show.title %></div>
-<div><%= @show.body %></div>
-<div><%= link_to "Edit", edit_book_path %></div>
-<div><%= link_to "Destroy", book_path(@show), method: :delete %></div>
+<table width="50%">
+<tr align="center">
+<td>
+  <%= image_tag @user.get_profile_image %>
+  <%= link_to @show.user.name, user_path(@show.user.id) %>
+</td>
+<td><%= link_to @show.user.name, user_path(@show.user.id) %></td>
+<td><%= link_to @show.title, book_path(@show) %></td>
+<td><%= @show.body %></td>
+<% if @show.user == current_user %>
+<td><%= link_to "Edit", edit_book_path, class: "btn btn-secondary" %></td>
+<td><%= link_to "Destroy", book_path(@show), method: :delete, class: "btn btn-secondary" %></td>
+</tr>
+<% end %>
+</table>
 </div>
 <div class="col-md-1"></div>
 </div>

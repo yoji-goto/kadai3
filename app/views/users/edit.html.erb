@@ -1,9 +1,19 @@
 <h1>User info</h1>
+
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
 <%= form_with model: @user do |f| %>
 <p>Name</p>
 <%= f.text_field :name %>
 <p>Image</p>
-<%= f.file_field :image, placeholder: "ファイルを選択", accept:"image/*" %>
+<%= f.file_field :profile_image, placeholder: "ファイルを選択", accept:"image/*" %>
 <p>Introduction</p>
 <%= f.text_field :introduction %><br>
 <%= f.submit "Update User", class: "btn btn-secondary" %>

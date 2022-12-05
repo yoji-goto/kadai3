@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @a = User.find(params[:id])
     @books = @a.books
@@ -7,13 +8,20 @@ class UsersController < ApplicationController
   end
 
   def edit
+    is_matching_login_user
     @user = User.find(params[:id])
   end
 
   def update
+    is_matching_login_user
     @user = User.find(params[:id])
-    @user.update(user_params)
+    if @user.update(user_params)
+    flash[:notice] = "プロフィール編集が完了しました。"
     redirect_to user_path(@user.id)
+    else
+     @user = User.find(params[:id])
+    render :edit
+    end
   end
 
   def index
@@ -27,5 +35,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
+
+def is_matching_login_user
+    user_id = params[:id].to_i
+    login_user_id = current_user.id
+    if(user_id != login_user_id)
+      redirect_to books_path
+    end
+end
 
 end

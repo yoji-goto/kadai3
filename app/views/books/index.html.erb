@@ -6,13 +6,22 @@
 <%= render 'info', book: @book, user: @user %>
 
 <div class="col-md-7">
-<h1>Books</h1>
-<div></div>
+<div class="border-bottom"><h1>Books</h1></div>
+<table width="50%">
+<tr>
+  <th> </th>
+  <th>Title</th>
+  <th>Opinion</th>
+</tr>
 <% @books.each do |book| %>
-<%= image_tag 'no_image.jpg' %>
-<%= link_to book.title, book_path(book.id) %>
-<%= book.body %>
+<tr align="center">
+<td><%= image_tag @user.get_profile_image %></td>
+<td><%= link_to book.title, book_path(book.id) %></td>
+<td><%= book.body %></td>
+</tr>
 <% end %>
+</table>
+</div>
 </div>
 <div class="col-md-1"></div>
 </div>

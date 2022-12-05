@@ -11,39 +11,39 @@
   </head>
 
   <body>
-    <header class="bg-dark text-white pt-5 pb-4">
+    <header class="navbar-dark bg-dark">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-barabd p-3" href="/">Bookers</a>
+          <a class="navbar-brand p-2" href="/">Bookers</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
   　　　　　　<span class="navbar-toggler-icon"></span>
 　　　　　</button>
-　　　　　<div class="collapse navbar-collapse" id="navbarNavDropdown">
+　　　　　<div class="navbar-collapse" id="navbarNavDropdown">
  　　　　　　　 <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "Home", user_path(current_user.id) %>
       </li>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "User", users_path %>
       </li>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "Books", books_path %>
       </li>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-      </li>
+      </li class="nav-link text-light">
       <% else %>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "Home", root_path %>
       </li>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "About", about_path %>
       </li>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "Sign in", new_user_session_path %>
       </li>
-      <li>
+      <li class="nav-link text-light">
         <%= link_to "Sign up", new_user_registration_path %>
       </li>
       <% end %>
@@ -52,6 +52,7 @@
       </div>
       </nav>
     </header>
+    <div><%= flash[:notice] %></div>
 
     <%= yield %>
 
