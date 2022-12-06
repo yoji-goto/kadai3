@@ -1,11 +1,10 @@
 
-<main class="continar">
+<main class="container">
 <div class="row">
-<diV class="col-md-1"></diV>
-<div class="col-md-4">
+<div class="col-md-3">
 <%= render 'info', book: @book, user: @user %>
 </div>
-<div class="col-md-7">
+<div class="col-md-8 offset-md-1">
 <div class="border-bottom"><h1>Books</h1></div>
 <table width="50%">
 <tr>
@@ -18,7 +17,7 @@
 <div>
 <tr align="center">
 <td>
-<%= link_to book_path(book.id) do %>
+<%= link_to user_path(book.user.id) do %>
 <%= image_tag book.user.get_profile_image %>
 <% end %>
 </td>
@@ -30,6 +29,5 @@
 </div>
 </div>
 </div>
-<div class="col-md-1"></div>
 </div>
 </main>

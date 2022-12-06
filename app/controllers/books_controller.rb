@@ -21,20 +21,25 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.new
-    @user = current_user
     @show = Book.find(params[:id])
+    @user = User.find(@show.user.id)
 
   end
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user == current_user
+      render :edit
+    else
+      redirect_to books_path
+    end
   end
 
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
      flash[:notice] = "投稿更新successfully"
-     redirect_to book_path(book.id)
+     redirect_to book_path(@book.id)
     else
      render :edit
     end
@@ -50,14 +55,6 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body)
-  end
-
-  def is_matching_login_user
-    user_id = params[:id].to_i
-    login_user_id = current_user.id
-    if(user_id != login_user_id)
-      redirect_to books_path
-    end
   end
 
   def get_image

@@ -25,8 +25,11 @@
   </table>
 </div>
 
-<%= link_to "User Edit", edit_user_path(user.id), class: "btn btn-secondary" %>
-
+<div>
+<%= link_to edit_user_path(user.id) do %>
+<i class="fa-solid fa-user-gear"></i>
+<% end %>
+</div>
 <div>
   <h1>New book</h1>
   <%= form_with(model: book, local: true) do |f| %>

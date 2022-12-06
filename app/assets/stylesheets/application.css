@@ -14,9 +14,6 @@
  *= require_self
  */
 
-header{
-  color: white;
-}
 
 table{
   display: table;
@@ -41,4 +38,12 @@ table{
 
 div {
   padding: 5px;
+}
+
+i{
+  color: white;
+}
+
+a{
+  color: white;
 }

@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
    def new
      super
-  　flash[:notice] = "新規登録successfully"
+  flash[:notice] = "新規登録successfully"
    end
 
   # POST /resource
