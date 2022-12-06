@@ -3,15 +3,14 @@ class BooksController < ApplicationController
   def create
   @book = Book.new(book_params)
   @book.user = current_user
-    if @book.save
+  if @book.save
     flash[:notice] = "新規投稿successfully"
     redirect_to book_path(@book.id)
-    else
-    @book = Book.new
+  else
     @books = Book.all
     @user = current_user
     render :index
-    end
+  end
   end
 
   def index
@@ -32,12 +31,11 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    if book.update(book_params)
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
      flash[:notice] = "投稿更新successfully"
      redirect_to book_path(book.id)
     else
-     book = Book.find(params[:id])
      render :edit
     end
   end

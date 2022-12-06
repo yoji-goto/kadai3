@@ -7,18 +7,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    is_matching_login_user
     @user = User.find(params[:id])
   end
 
   def update
-    is_matching_login_user
     @user = User.find(params[:id])
     if @user.update(user_params)
     flash[:notice] = "プロフィール編集successfully"
     redirect_to user_path(@user.id)
     else
-     @user = User.find(params[:id])
     render :edit
     end
   end
